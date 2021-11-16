@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.card {
+    max-width: 400px;
+    margin: 10px auto;
+}

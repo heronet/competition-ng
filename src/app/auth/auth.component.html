@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-card class="card">
+        <form class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input type="text" ngModel matInput name="username" placeholder="Ex. Sirat" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" ngModel matInput name="password" placeholder="Ex. Pa$$w0rd" required>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+        </form>
+    </mat-card>
+</div>
