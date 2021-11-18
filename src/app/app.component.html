@@ -1,7 +1,8 @@
 <mat-sidenav-container>
   <mat-sidenav opened="false" #sidenav>
     <mat-nav-list>
-      <mat-list-item routerLink="/auth">Login</mat-list-item>
+      <mat-list-item routerLink="/auth" *ngIf="!isAuthenticated">Login</mat-list-item>
+      <mat-list-item  *ngIf="isAuthenticated" (click)="onLogout()">Logout</mat-list-item>
       <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>

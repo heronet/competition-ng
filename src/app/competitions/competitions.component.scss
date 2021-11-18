@@ -3,12 +3,12 @@ $card-max-width: 600px;
 .container {
     position: relative;
 }
-.container > * {
+.card {
     margin: 10px auto;
     padding: 10px;
     max-width: $card-max-width;
     color: #fff;
-    background-image: url("./../../assets/English.jpg");
+    background-image: url("../../assets/English.jpg");
     background-size: cover;
     height: 150px;
     cursor: pointer;

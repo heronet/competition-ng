@@ -1,7 +1,11 @@
 <div class="container">
-    <mat-card class="elevate">
-        <mat-card-title>
-            Science Fair 2021
-        </mat-card-title>
-    </mat-card>
+    <section *ngIf="competitions && !isLoading">
+        <mat-card class="elevate card" *ngFor="let competition of competitions">
+            <mat-card-title>
+                {{competition.name}}
+            </mat-card-title>
+        </mat-card>
+    </section>
+    
+    <p *ngIf="!competitions && !isLoading">No Ongoing Competitions</p>
 </div>
