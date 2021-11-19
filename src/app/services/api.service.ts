@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AuthData } from '../models/authData';
 import { Competition } from '../models/competition';
 import { Login } from '../models/login';
+import { Student } from '../models/student';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,9 @@ export class ApiService {
 
   getCompetitions() {
     return this.http.get<{data: Competition[], size: number}>(`${this.baseUrl}/competition?pageSize=${10}&pageNumber=${1}`);
+  }
+  getParticipants(id: string) {
+    return this.http.get<{data: Student[], size: number}>(`${this.baseUrl}/competition/${id}?pageSize=${10}&pageNumber=${1}`);
   }
 
   login(data: Login) {

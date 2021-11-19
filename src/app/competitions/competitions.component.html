@@ -1,6 +1,6 @@
 <div class="container">
     <section *ngIf="competitions && !isLoading">
-        <mat-card class="elevate card" *ngFor="let competition of competitions">
+        <mat-card class="elevate card" *ngFor="let competition of competitions" [routerLink]="['/competitions', competition.id]">
             <mat-card-title>
                 {{competition.name}}
             </mat-card-title>

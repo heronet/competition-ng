@@ -1,0 +1,18 @@
+<div class="container">
+    <p class="title">Participants</p>
+    <mat-list *ngIf="participants && !isLoading">
+        <mat-list-item *ngFor="let participant of participants">
+            <span>{{participant.name}}</span>
+            <div class="spacer"></div>
+            <form #form="ngForm">
+                <mat-form-field>
+                    <input matInput name="score" ngModel required />
+                </mat-form-field>
+            </form>
+            <button mat-stroked-button style="margin-left: 5px;" *ngIf="form.dirty && form.valid">Done</button>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    
+    <p *ngIf="!participants && !isLoading">No One Participated</p>
+</div>
