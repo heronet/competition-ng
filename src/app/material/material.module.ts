@@ -8,6 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatCardModule } from "@angular/material/card";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatFormFieldModule } from "@angular/material/form-field";
 
 
@@ -22,7 +23,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatButtonModule,
     MatListModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatSidenavModule,
@@ -32,7 +34,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatButtonModule,
     MatListModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

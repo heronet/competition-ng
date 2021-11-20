@@ -4,15 +4,17 @@
         <mat-list-item *ngFor="let participant of participants">
             <span>{{participant.name}}</span>
             <div class="spacer"></div>
+            <p style="margin: auto 10px;">Score: </p>
             <form #form="ngForm">
-                <mat-form-field>
-                    <input matInput name="score" ngModel required />
+                <mat-form-field >
+                    <input matInput name="score" type="number" [ngModel]="participant.score" ngModel required />
                 </mat-form-field>
             </form>
-            <button mat-stroked-button style="margin-left: 5px;" *ngIf="form.dirty && form.valid">Done</button>
+            <button (click)="markParticipant(participant.id, form.value.score)" mat-stroked-button style="margin-left: 5px;" *ngIf="form.dirty && form.valid">Done</button>
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
     
     <p *ngIf="!participants && !isLoading">No One Participated</p>
+    <mat-spinner *ngIf="isLoading" [diameter]="60" style="margin: 5vw auto;"></mat-spinner>
 </div>

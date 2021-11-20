@@ -7,5 +7,6 @@
         email: string;
         ncpscId: string;
         phone: string;
+        score?: number; // Used for tsc
         competitions: string[];
     }
