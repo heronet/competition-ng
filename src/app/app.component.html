@@ -2,8 +2,9 @@
   <mat-sidenav opened="false" #sidenav>
     <mat-nav-list>
       <mat-list-item routerLink="/students" *ngIf="isAuthenticated && isAdmin">Students</mat-list-item>
+      <mat-list-item routerLink="/competitions" *ngIf="isAuthenticated">Competitions</mat-list-item>
       <mat-list-item routerLink="/auth" *ngIf="!isAuthenticated">Login</mat-list-item>
-      <mat-list-item  *ngIf="isAuthenticated" (click)="onLogout()">Logout</mat-list-item>
+      <mat-list-item *ngIf="isAuthenticated" (click)="onLogout()">Logout</mat-list-item>
       <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
@@ -14,6 +15,7 @@
         <a routerLink="/" class="title">Competition</a>
         <div class="spacer"></div>
         <a routerLink="/students" mat-button *ngIf="isAuthenticated && isAdmin">Students</a>
+        <a routerLink="/competitions" mat-button *ngIf="isAuthenticated">Competitions</a>
         <a routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
         <button mat-stroked-button *ngIf="isAuthenticated" (click)="onLogout()">Logout</button>
       </section>

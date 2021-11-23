@@ -1,0 +1,23 @@
+<div class="container">
+    <p class="title">Student Database</p>
+    <mat-divider></mat-divider>
+    <mat-list *ngIf="students && !isLoading">
+        <mat-list-item style="font-size: 25px;">
+            <span>Name</span>
+            <div class="spacer"></div>
+            <p style="margin: auto 10px; text-align: center;">ID</p>
+            <p style="margin: auto 10px; text-align: center;">Class </p>
+           <mat-divider></mat-divider>
+        </mat-list-item>
+        <mat-list-item *ngFor="let student of students">
+            <span>{{student.name}}</span>
+            <div class="spacer"></div>
+            <p style="margin: auto 10px;">{{student.ncpscId | titlecase}} </p>
+            <p style="margin: auto 10px;">{{student.class}} </p>
+           <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    
+    <p *ngIf="!students && !isLoading">No Student</p>
+    <mat-spinner *ngIf="isLoading" [diameter]="60" style="margin: 5vw auto;"></mat-spinner>
+</div>

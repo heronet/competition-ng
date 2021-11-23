@@ -10,12 +10,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { ParticipantsComponent } from './competitions/participants/participants.component';
 import { FormsModule } from '@angular/forms';
+import { StudentsComponent } from './students/students.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetitionsComponent,
     ParticipantsComponent,
+    StudentsComponent,
   ],
   imports: [
     BrowserModule,

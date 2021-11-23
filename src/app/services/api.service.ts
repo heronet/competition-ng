@@ -26,6 +26,9 @@ export class ApiService {
   getCompetitions() {
     return this.http.get<{data: Competition[], size: number}>(`${this.baseUrl}/competition?pageSize=${10}&pageNumber=${1}`);
   }
+  getStudents() {
+    return this.http.get<{data: Student[], size: number}>(`${this.baseUrl}/students?pageSize=${10}&pageNumber=${1}`);
+  }
   getParticipants(id: string) {
     return this.http.get<{data: Student[], size: number}>(`${this.baseUrl}/competition/${id}?pageSize=${10}&pageNumber=${1}`);
   }
