@@ -11,20 +11,21 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit {
   authStatusSubscription: Subscription | null = null;
+  adminStatusSubscription: Subscription | null = null;
   
   isAuthenticated = false;
+  isAdmin = false;
   isLoading = false;
   constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
     this.isLoading = true;
     this.authStatusSubscription = this.apiService.isAuthenticated$.subscribe(auth => {
-      if(!auth) {
-        this.isAuthenticated = auth;
-        this.router.navigateByUrl("/auth");
-      } else {
-        this.isAuthenticated = auth;
-      }
-    })
+       this.isAuthenticated = auth;
+      //  this.router.navigateByUrl("/auth");
+    });
+    this.adminStatusSubscription = this.apiService.isAdmin$.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    });
     this.setupUser();
   }
   setupUser() {
@@ -32,19 +33,23 @@ export class AppComponent implements OnInit {
     let userData = JSON.parse(localStorage.getItem('authData')!) as AuthData
     if(userData) {
       this.apiService.emitOldAuthData(userData); // For TokenInterceptor and Refresh token.
-      this.apiService.refrestToken(userData).pipe(take(1)).subscribe((newAuthData) => {
+      this.apiService.refrestToken(userData).pipe(take(1))
+      .subscribe((newAuthData) => {
         this.apiService.saveUserLocal(newAuthData); // Save minimal data.
         this.apiService.setUser(newAuthData); // Emit full authData.
         this.isLoading = false;
       }, err => {
+        console.log(err);
         this.isLoading = false;
         this.apiService.setUser(null);
         localStorage.removeItem('authData');
-        this.router.navigateByUrl('/auth')
-      })
+        this.router.navigateByUrl('/auth');
+      });
     } else {
       this.isLoading = false;
       this.router.navigateByUrl('/auth') // No feature is available without logging in.
+      console.log("No user data");
+      
     }
   }
   onLogout() {
@@ -53,5 +58,6 @@ export class AppComponent implements OnInit {
   }
   ngOnDestroy() {
     this.authStatusSubscription?.unsubscribe();
+    this.adminStatusSubscription?.unsubscribe();
   }
 }

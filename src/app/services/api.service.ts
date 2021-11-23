@@ -17,6 +17,10 @@ export class ApiService {
 
   private isAuthenticated = new ReplaySubject<boolean>();
   isAuthenticated$ = this.isAuthenticated.asObservable();
+
+  private isAdmin = new ReplaySubject<boolean>();
+  isAdmin$ = this.isAdmin.asObservable();
+
   constructor(private http: HttpClient) { }
 
   getCompetitions() {
@@ -41,10 +45,12 @@ export class ApiService {
     localStorage.removeItem('authData');
     this.authenticateSubject.next(null);
     this.isAuthenticated.next(false);
+    this.isAdmin.next(false);
   }
   setUser(authData: AuthData | null) {
     this.authenticateSubject.next(authData);
     this.isAuthenticated.next(authData ? true : false);
+    this.isAdmin.next(authData?.roles?.includes("Admin") ? true: false);
   }
   saveUserLocal(authData: AuthData) { // Save minimal authData
     let saveAuthData: AuthData = {
