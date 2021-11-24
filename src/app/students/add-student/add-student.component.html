@@ -1,0 +1,44 @@
+<div class="container">
+    <p class="title">New Student</p>
+    <mat-divider></mat-divider>
+    <mat-card>
+        <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <mat-form-field  class="text">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" name="name" id="name" ngModel required placeholder="Student's Name">
+            </mat-form-field>
+            <mat-form-field  class="text">
+                <mat-label>ID</mat-label>
+                <input matInput type="text" name="id" id="id" ngModel required placeholder="Student's ID">
+            </mat-form-field>
+            <mat-form-field  class="text">
+                <mat-label>Class</mat-label>
+                <mat-select matInput name="class" id="class" ngModel required>
+                    <mat-option *ngFor="let class of classes" [value]="class">{{class}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field  class="text">
+                <mat-label>Section</mat-label>
+                <input matInput type="text" name="section" id="section" ngModel required placeholder="Student's Section">
+            </mat-form-field>
+            <mat-form-field  class="text">
+                <mat-label>House</mat-label>
+                <mat-select matInput name="house" id="house" ngModel required>
+                    <mat-option *ngFor="let house of houses" [value]="house">{{house}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field  class="text">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email" id="email" ngModel required placeholder="Student's Email">
+            </mat-form-field>
+            <mat-form-field  class="text">
+                <mat-label>Phone</mat-label>
+                <input matInput type="tel" name="phone" id="phone" ngModel required placeholder="Student's Phone">
+            </mat-form-field>
+            
+
+            <button *ngIf="!isLoading" type="submit" color="accent" mat-raised-button [disabled]="form.invalid">Done</button>
+            <button *ngIf="isLoading" style="padding: 5px;" type="button" color="accent" mat-raised-button disabled><mat-spinner style="margin: 0 auto;" [diameter]="25"></mat-spinner></button>
+        </form>
+    </mat-card>
+</div>

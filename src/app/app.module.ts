@@ -11,6 +11,7 @@ import { TokenInterceptor } from './utils/token.interceptor';
 import { ParticipantsComponent } from './competitions/participants/participants.component';
 import { FormsModule } from '@angular/forms';
 import { StudentsComponent } from './students/students.component';
+import { AddStudentComponent } from './students/add-student/add-student.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { StudentsComponent } from './students/students.component';
     CompetitionsComponent,
     ParticipantsComponent,
     StudentsComponent,
+    AddStudentComponent,
   ],
   imports: [
     BrowserModule,

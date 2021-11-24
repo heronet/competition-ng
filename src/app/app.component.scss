@@ -3,6 +3,13 @@ mat-sidenav-container, mat-sidenav-content {
 }
 mat-toolbar {
     height: 50px;
+    width: 100%;
+    position: sticky;
+    position: -webkit-sticky;
+    /* For macOS/iOS Safari */
+    top: 0;
+    /* Sets the sticky toolbar to be on top */
+    z-index: 1000;
 }
 mat-sidenav {
     width: 250px;

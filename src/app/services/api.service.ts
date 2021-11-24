@@ -35,7 +35,9 @@ export class ApiService {
   markParticipant(id: string, data: {studentId: string, score: number}) {
     return this.http.post<{}>(`${this.baseUrl}/competition/${id}/mark`, data);
   }
-
+  addStudent(student: Partial<Student>) {
+    return this.http.post(`${this.baseUrl}/students`, student);
+  }
   login(data: Login) {
     return this.http.post<AuthData>(`${this.baseUrl}/account/login`, data).pipe(
       map(authData => {
@@ -43,6 +45,9 @@ export class ApiService {
         this.setUser(authData);
       })
     );
+  }
+  refrestToken(authData: AuthData) {
+    return this.http.post<AuthData>(`${this.baseUrl}/account/refresh`, authData);
   }
   logout() {
     localStorage.removeItem('authData');
@@ -63,9 +68,7 @@ export class ApiService {
     };
     localStorage.setItem('authData', JSON.stringify(saveAuthData)); 
   }
-  refrestToken(authData: AuthData) {
-    return this.http.post<AuthData>(`${this.baseUrl}/account/refresh`, authData);
-  }
+  
   emitOldAuthData(authData: AuthData) {
     this.authenticateSubject.next(authData);
   }

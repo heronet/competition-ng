@@ -17,7 +17,7 @@
            <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
-    
+    <button mat-fab class="fab" routerLink="/students/add-student"><mat-icon>add</mat-icon></button>
     <p *ngIf="!students && !isLoading">No Student</p>
     <mat-spinner *ngIf="isLoading" [diameter]="60" style="margin: 5vw auto;"></mat-spinner>
 </div>
