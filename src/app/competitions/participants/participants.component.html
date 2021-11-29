@@ -1,5 +1,10 @@
 <div class="container">
-    <p class="title">Participants</p>
+    <p class="title" *ngIf="!isAdmin">Participants</p>
+    <div class="title" style="display: flex;">
+        <p>Participants</p>
+        <div style="flex: 1 1 auto;"></div>
+        <button mat-raised-button [routerLink]="['toppers']">View Results</button>
+    </div>
     <mat-divider></mat-divider>
     <mat-list *ngIf="participants && !isLoading">
         <mat-list-item *ngFor="let participant of participants">

@@ -7,5 +7,5 @@
         </mat-card>
     </section>
     
-    <p *ngIf="!competitions && !isLoading">No Ongoing Competitions</p>
+    <p *ngIf="(competitions.length == 0)  && !isLoading" class="error">No Ongoing Competitions</p>
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Student } from 'src/app/models/student';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -8,24 +9,29 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './participants.component.html',
   styleUrls: ['./participants.component.scss']
 })
-export class ParticipantsComponent implements OnInit {
+export class ParticipantsComponent implements OnInit, OnDestroy {
   isLoading = false;
+  isAdmin = false;
+  adminStatusSubscription: Subscription | null = null;
+
   competitionId: string = "";
   participants: Student[] = [];
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.competitionId = params.get("id") ?? "";
       this.getParticipants(this.competitionId);
-    })
+    });
+    this.adminStatusSubscription = this.apiService.isAdmin$.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    });
   }
   getParticipants(id: string) {
     this.isLoading = true;
     this.apiService.getParticipants(id).subscribe(data => {
       this.participants = data.data;
-      console.log(this.participants);
-      
       this.isLoading = false;
     }, err => {
       console.log(err);
@@ -45,4 +51,7 @@ export class ParticipantsComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(): void {
+    this.adminStatusSubscription?.unsubscribe();
+  }
 }

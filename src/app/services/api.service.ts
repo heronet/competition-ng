@@ -32,6 +32,9 @@ export class ApiService {
   getParticipants(id: string) {
     return this.http.get<{data: Student[], size: number}>(`${this.baseUrl}/competition/${id}?pageSize=${10}&pageNumber=${1}`);
   }
+  getToppers(id: string) {
+    return this.http.get<{data: Student[], size: number}>(`${this.baseUrl}/competition/${id}/scores?pageSize=${10}&pageNumber=${1}`);
+  }
   markParticipant(id: string, data: {studentId: string, score: number}) {
     return this.http.post<{}>(`${this.baseUrl}/competition/${id}/mark`, data);
   }

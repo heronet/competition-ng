@@ -12,6 +12,7 @@ import { ParticipantsComponent } from './competitions/participants/participants.
 import { FormsModule } from '@angular/forms';
 import { StudentsComponent } from './students/students.component';
 import { AddStudentComponent } from './students/add-student/add-student.component';
+import { ToppersComponent } from './competitions/toppers/toppers.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AddStudentComponent } from './students/add-student/add-student.componen
     ParticipantsComponent,
     StudentsComponent,
     AddStudentComponent,
+    ToppersComponent,
   ],
   imports: [
     BrowserModule,
