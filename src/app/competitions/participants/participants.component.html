@@ -3,12 +3,16 @@
     <div class="title" style="display: flex;">
         <p>Participants</p>
         <div style="flex: 1 1 auto;"></div>
-        <button mat-raised-button [routerLink]="['toppers']">View Results</button>
+        <button mat-raised-button [routerLink]="['toppers']" *ngIf="isAdmin">View Results</button>
     </div>
     <mat-divider></mat-divider>
     <mat-list *ngIf="participants && !isLoading">
         <mat-list-item *ngFor="let participant of participants">
-            <span>{{participant.name}}</span>
+            <p style="margin: auto 10px; text-align: center;">{{participant.name}}</p>
+            <p style="margin: auto 10px; text-align: center;">{{participant.ncpscId | titlecase}} </p>
+            <p style="margin: auto 10px; text-align: center;">{{participant.subname ?? "Unknown"}} </p>
+            <p style="margin: auto 10px; text-align: center;">{{participant.class}} </p>
+            <p style="margin: auto 10px; text-align: center;">{{participant.schoolName}} </p>
             <div class="spacer"></div>
             <p style="margin: auto 10px;">Score: </p>
             <form #form="ngForm">
