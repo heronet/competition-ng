@@ -1,9 +1,9 @@
 <div class="container">
     <p class="title" *ngIf="!isAdmin">Participants</p>
-    <div class="title" style="display: flex;">
+    <div class="title" style="display: flex;" *ngIf="isAdmin">
         <p>Participants</p>
         <div style="flex: 1 1 auto;"></div>
-        <button mat-raised-button [routerLink]="['toppers']" *ngIf="isAdmin">View Results</button>
+        <button mat-raised-button [routerLink]="['toppers']" >View Results</button>
     </div>
     <mat-divider></mat-divider>
     <mat-list *ngIf="participants && !isLoading">
